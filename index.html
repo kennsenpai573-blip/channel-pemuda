@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#09070f">
+  <meta name="description" content="Pemuda Channel — ruang channel, video, dan komunitas.">
+  <title>Pemuda Channel</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="ambient ambient-one"></div><div class="ambient ambient-two"></div>
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="Pemuda Channel beranda">
+      <span class="brand-mark">P<span>+</span></span>
+      <span class="brand-copy"><strong>PEMUDA<span> CHANNEL</span></strong><small>CONNECT • CREATE • SHARE</small></span>
+    </a>
+    <label class="searchbox"><span>⌕</span><input id="globalSearch" type="search" placeholder="Cari channel, video, atau topik..."></label>
+    <div class="top-actions"><button id="supabaseSettings" class="button button-outline" title="Pengaturan Supabase">Supabase</button><button id="themeButton" class="icon-button" title="Ganti tampilan" aria-label="Ganti tampilan">◐</button><button id="loginButton" class="button button-outline">Masuk</button><button id="joinButton" class="button button-primary">Gabung</button></div>
+  </header>
+  <div class="app-layout">
+    <aside class="sidebar">
+      <div class="side-label">MENU UTAMA</div>
+      <button class="nav-item active" data-page="home"><span>⌂</span> Beranda</button>
+      <button class="nav-item" data-page="explore"><span>⌕</span> Jelajahi</button>
+      <button class="nav-item" data-page="videos"><span>▷</span> Video</button>
+      <button class="nav-item" data-page="community"><span>◎</span> Komunitas</button>
+      <button class="nav-item" data-page="following"><span>♡</span> Channel diikuti</button>
+      <div class="side-divider"></div>
+      <div class="side-label">KATEGORI</div>
+      <button class="nav-item category" data-category="Semua"><i class="dot dot-purple"></i> Semua channel</button>
+      <button class="nav-item category" data-category="Gaming"><i class="dot dot-pink"></i> Gaming</button>
+      <button class="nav-item category" data-category="Anime"><i class="dot dot-blue"></i> Anime</button>
+      <button class="nav-item category" data-category="Teknologi"><i class="dot dot-green"></i> Teknologi</button>
+      <button class="nav-item category" data-category="Kreator"><i class="dot dot-orange"></i> Kreator</button>
+      <div class="sidebar-bottom"><div class="mini-card"><div class="mini-icon">✦</div><strong>Temukan ruangmu.</strong><p>Ikuti channel favorit dan temukan komunitas baru.</p><button id="sidebarExplore" class="text-button">Jelajahi channel ↗</button></div><small>© 2026 Pemuda Channel</small></div>
+    </aside>
+    <main id="mainContent" class="main-content">
+      <section class="hero">
+        <div class="hero-copy"><span class="eyebrow"><span class="live-dot"></span> RUANG KREATIF GENERASI</span><h1>Satu tempat.<br><span>Banyak cerita.</span></h1><p>Temukan channel, tonton video, dan terhubung dengan komunitas yang punya minat sama denganmu.</p><div class="hero-actions"><button class="button button-primary" data-goto="explore">Jelajahi channel <span>↗</span></button><button class="button button-glass" id="createHero">＋ Buat channel</button></div><div class="hero-stats"><div><strong id="statChannels">08</strong><small>CHANNEL</small></div><div><strong id="statPosts">24</strong><small>POSTINGAN</small></div><div><strong>∞</strong><small>IDE BARU</small></div></div></div>
+        <div class="hero-art" aria-hidden="true"><div class="orbit orbit-a"></div><div class="orbit orbit-b"></div><div class="hero-glass"><div class="glass-top"><span>PEMUDA / LIVE</span><span class="signal">● ONLINE</span></div><div class="hero-symbol">P<span>+</span></div><div class="glass-bottom"><span>YOUR SPACE<br><b>YOUR COMMUNITY</b></span><span class="play-badge">▷</span></div></div><div class="float-tag tag-one">✦ CREATE</div><div class="float-tag tag-two">◉ CONNECT</div><div class="float-tag tag-three">↗ SHARE</div></div>
+      </section>
+      <section class="section-block" id="featuredSection"><div class="section-heading"><div><span class="eyebrow">PILIHAN UNTUKMU</span><h2>Channel <span>unggulan</span></h2></div><button class="text-button" data-goto="explore">Lihat semua ↗</button></div><div id="featuredGrid" class="channel-grid"></div></section>
+      <section class="section-block"><div class="section-heading"><div><span class="eyebrow">UPDATE TERBARU</span><h2>Postingan <span>terkini</span></h2></div><button class="text-button" data-goto="community">Lihat feed ↗</button></div><div id="feedList" class="feed-list"></div></section>
+      <section class="section-block"><div class="section-heading"><div><span class="eyebrow">TONTON SEKARANG</span><h2>Video <span>pilihan</span></h2></div><button class="text-button" data-goto="videos">Semua video ↗</button></div><div id="videoGrid" class="video-grid"></div></section>
+      <footer class="footer"><span>© 2026 Pemuda Channel</span><span>Dibuat untuk berbagi hal yang berarti.</span><button class="text-button" id="aboutButton">Tentang platform</button></footer>
+    </main>
+  </div>
+  <nav class="mobile-nav"><button class="active" data-page="home"><span>⌂</span>Home</button><button data-page="explore"><span>⌕</span>Jelajahi</button><button data-page="videos"><span>▷</span>Video</button><button data-page="community"><span>◎</span>Komunitas</button><button data-page="following"><span>♡</span>Diikuti</button></nav>
+  <div id="toast" class="toast" role="status"></div>
+  <div id="modalBackdrop" class="modal-backdrop hidden"><section class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle"><button id="modalClose" class="modal-close" aria-label="Tutup">×</button><div id="modalContent"></div></section></div>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="supabase-config.js"></script>
+  <script src="supabase-bridge.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
